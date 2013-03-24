@@ -14,14 +14,17 @@
   <ul class="list inset">
     <li class="list-divider">Opening Times</li>
     <li>
-      <!-- <strong>Royal A&E</strong> -->
+      24-7
     </li>
   </ul>
 
   <ul class="list inset">
     <li class="list-divider">Qualifying Comments</li>
     <li>
-      <!-- <strong>Royal A&E</strong> -->
+      <% if @category == 'MIU' %>
+        Rule out syncope, ECG abnormality or anti-coagulants.
+        Phone ahead for geriatric consort services (age 75+).
+      <% end %>
     </li>
   </ul>
 
