@@ -1,0 +1,56 @@
+.list {
+  margin-top: 10px;
+}
+
+.button-block {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.distance {
+  float: left;
+  opacity: 0.6;
+  width: 20%;
+}
+
+.service-name {
+  display: inline-block;
+  font-weight: bold;
+  width: 70%;
+}
+
+.list input[type="checkbox"] {
+  float: right;
+  margin-right: -40px;
+}
+
+.list li[role="service"] .label {
+  font-weight: bold;
+  font-size: 120%;
+}
+
+.list li[data-type="hospital"] {
+  background-color: red;
+  color: white;
+}
+
+.list li[data-type="ae"] {
+  background-color: orange;
+  color: white;
+}
+
+.list li[data-type="miu"] {
+  background-color: yellow;
+  /* color: white; */
+}
+
+.list li[data-type="gp"] {
+  background-color: green;
+  color: white;
+}
+
+.list li[data-type="pharmacy"] {
+  background-color: blue;
+  color: white;
+}

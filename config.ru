@@ -1,0 +1,2 @@
+require './littlesick'
+run LittleSick
