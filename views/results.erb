@@ -17,34 +17,36 @@
 <!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
 <div class="content">
   <ul class="list inset">
-    <li role="service" data-type="hospital">
-      <a href="/details" data-transition="slide-in">
-        <span class="distance">3.2mi</span>
-        <strong>Royal A&E</strong>
-        <span class="chevron"></span>
-      </a>
-    </li>
-    <li role="service" data-type="miu">
-      <a href="/details" data-transition="slide-in">
-        <span class="distance">3.2mi</span>
-        <strong>City Centre MIU</strong>
-        <span class="chevron"></span>
-      </a>
-    </li>
-    <li role="service" data-type="miu">
-      <a href="/details" data-transition="slide-in">
-        <span class="distance">3.2mi</span>
-        <strong>Lothianburn MIU</strong>
-        <span class="chevron"></span>
-      </a>
-    </li>
-    <li role="service" data-type="pharmacy">
-      <a href="/details" data-transition="slide-in">
-        <span class="distance">3.2mi</span>
-        <div class="service-name">Boots Newington</div>
-        <span class="chevron"></span>
-      </a>
-    </li>
+    <% @results.each do |result| %>
+      <li role="service" data-type="<%= result[:category] %>">
+        <a href="/details/<%= result[:_id] %>" data-transition="slide-in">
+          <span class="distance"><%= result[:distance] %>mi</span>
+          <strong><%= result[:location_name] %></strong>
+          <span class="chevron"></span>
+        </a>
+      </li>
+    <% end %>
+    <!-- <li role="service" data-type="miu"> -->
+    <!--   <a href="/details" data-transition="slide-in"> -->
+    <!--     <span class="distance">3.2mi</span> -->
+    <!--     <strong>City Centre MIU</strong> -->
+    <!--     <span class="chevron"></span> -->
+    <!--   </a> -->
+    <!-- </li> -->
+    <!-- <li role="service" data-type="miu"> -->
+    <!--   <a href="/details" data-transition="slide-in"> -->
+    <!--     <span class="distance">3.2mi</span> -->
+    <!--     <strong>Lothianburn MIU</strong> -->
+    <!--     <span class="chevron"></span> -->
+    <!--   </a> -->
+    <!-- </li> -->
+    <!-- <li role="service" data-type="pharmacy"> -->
+    <!--   <a href="/details" data-transition="slide-in"> -->
+    <!--     <span class="distance">3.2mi</span> -->
+    <!--     <div class="service-name">Boots Newington</div> -->
+    <!--     <span class="chevron"></span> -->
+    <!--   </a> -->
+    <!-- </li> -->
   </ul>
 </div>
 

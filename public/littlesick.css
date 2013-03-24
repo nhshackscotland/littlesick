@@ -30,27 +30,27 @@
   font-size: 120%;
 }
 
-.list li[data-type="hospital"] {
+.list li[data-type="HOS"] {
   background-color: red;
   color: white;
 }
 
-.list li[data-type="ae"] {
+.list li[data-type="AAE"] {
   background-color: orange;
   color: white;
 }
 
-.list li[data-type="miu"] {
+.list li[data-type="MIU"] {
   background-color: yellow;
   /* color: white; */
 }
 
-.list li[data-type="gp"] {
+.list li[data-type="GPP"], .list li[data-type="GPB"] {
   background-color: green;
   color: white;
 }
 
-.list li[data-type="pharmacy"] {
+.list li[data-type="PHA"] {
   background-color: blue;
   color: white;
 }

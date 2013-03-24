@@ -4,12 +4,12 @@
     Back
   </a>
 
-  <h1 class="title">Royal A&E</h1>
+  <h1 class="title"><%= @location_name %></h1>
 </header>
 
 <!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
 <div class="content">
-  <a href="tel:08450193820" class="button-block button-positive">Call 0845 019 3820</a>
+  <a href="tel:<%= @phone %>" class="button-block button-positive">Call <%= @phone %></a>
 
   <ul class="list inset">
     <li class="list-divider">Opening Times</li>
@@ -28,7 +28,7 @@
   <ul class="list inset">
     <li class="list-divider">Address</li>
     <li>
-      <!-- <strong>Royal A&E</strong> -->
+      <%= @address %>
     </li>
   </ul>
 </div>
