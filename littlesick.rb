@@ -5,6 +5,10 @@ class LittleSick < Sinatra::Base
     erb :filter, layout: :application
   end
 
+  get '/map' do
+    erb :map, layout: :application
+  end
+
   get '/results' do
     @results = results
     erb :results, layout: :application
