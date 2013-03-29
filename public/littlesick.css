@@ -37,12 +37,12 @@
 .filters.list li[role="service"] {
   font-size: 120%;
   font-weight: bold;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .list li[role="service"] {
   color: white;
-  padding-top: 15px;
-  padding-bottom: 15px;
 }
 
 .list li[data-type="HOS"] {
