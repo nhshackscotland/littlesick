@@ -21,7 +21,9 @@
     <link rel="stylesheet" href="littlesick.css">
 
     <!-- Include the compiled Ratchet JS -->
-    <script src="ratchet.js"></script>
+    <script src="/javascripts/vendor/ratchet.js"></script>
+    <script src="/javascripts/vendor/jquery.min.js"></script>
+    <%= yield_content :javascript %>
   </head>
   <body>
     <%= yield %>

@@ -1,6 +1,9 @@
 require 'sinatra'
+require 'sinatra/content_for'
 
 class LittleSick < Sinatra::Base
+  helpers Sinatra::ContentFor
+
   get '/' do
     erb :filter, layout: :application
   end
