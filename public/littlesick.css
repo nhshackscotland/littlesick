@@ -45,23 +45,23 @@
   color: white;
 }
 
-.list li[data-type="HOS"] {
+.list li[data-category="HOS"] {
   background-color: #B72306; /* red */
 }
 
-.list li[data-type="AAE"] {
+.list li[data-category="AAE"] {
   background-color: #D05C05; /* orange */
 }
 
-.list li[data-type="MIU"] {
+.list li[data-category="MIU"] {
   background-color: #FCCF02; /* yellow */
   color: black;
 }
 
-.list li[data-type="GPP"], .list li[data-type="GPB"] {
+.list li[data-category="GPP"], .list li[data-category="GPB"] {
   background-color: #47A24C; /* green */
 }
 
-.list li[data-type="PHA"] {
+.list li[data-category="PHA"] {
   background-color: #025B65; /* blue */
 }

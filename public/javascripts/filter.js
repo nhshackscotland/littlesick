@@ -4,7 +4,7 @@ var getLocation = function (found, notFound) {
 
 var foundLocation = function (position) {
   window.location = generateUrl(position);
-}
+};
 
 var generateUrl = function (position) {
   var lat, long, url;
@@ -12,17 +12,27 @@ var generateUrl = function (position) {
   lat  = position.coords.latitude;
   long = position.coords.longitude;
 
-  url  = '/results?ll=' + lat + ',' + long;
+  url  = '/results'
+  url += '?ll=' + lat + ',' + long;
+  url += '&categories=' + getCategories();
 
   return url;
-}
+};
 
 var noLocation = function () {
   alert('Could not find location');
-}
+};
 
-$(document).ready( function () {
+var getCategories = function () {
+  var cats = $('.toggle.active').closest('li');
+  cats = $.map(cats, function(n,i) { return $(n).data('category'); });
+  return cats.join(',');
+};
+
+var setup = function () {
   $('.search-button').on('click', function (e) {
     getLocation(foundLocation, noLocation);
   });
-});
+};
+
+$(setup);

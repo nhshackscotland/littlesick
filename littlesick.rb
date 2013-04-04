@@ -35,7 +35,7 @@ class LittleSick < Sinatra::Base
       {
         _id: "514eece3005385f0cdd250f2",
         location_name: "City Centre MIU",
-        distance: 3.2,
+        geo_near_distance: 3.2,
         phone: "0845 678 9107",
         address: "3 Cowgate\nEdinburgh\nEH02 2RT",
         category: "MIU"
@@ -43,7 +43,7 @@ class LittleSick < Sinatra::Base
       {
         _id: "314eece3005385f0cdd250f2",
         location_name: "Royal A&E",
-        distance: 2.1,
+        geo_near_distance: 2.1,
         phone: "0131 678 9107",
         address: "12 Old Dalkeith Road\nEdinburgh\nEH15 2HR",
         category: "AAE"
@@ -51,7 +51,7 @@ class LittleSick < Sinatra::Base
       {
         _id: "714eece3005385f0cdd250f2",
         location_name: "Liberton MIU",
-        distance: 2.8,
+        geo_near_distance: 2.8,
         phone: "0131 578 9330",
         address: "58 Liberton Road\nEdinburgh\nEH15 2HR",
         category: "MIU"
@@ -59,11 +59,11 @@ class LittleSick < Sinatra::Base
       {
         _id: "814eece3005385f0cdd250f2",
         location_name: "Western General Hospital",
-        distance: 3.8,
+        geo_near_distance: 3.8,
         phone: "0131 478 0077",
         address: "Queensferry Road\nEdinburgh\nEH15 2HR",
         category: "HOS"
       },
-    ].sort{|a,b| a[:distance] <=> b[:distance] }
+    ].sort{|a,b| a[:geo_near_distance] <=> b[:geo_near_distance] }
   end
 end
