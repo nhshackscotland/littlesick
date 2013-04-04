@@ -1,8 +1,9 @@
-<!-- Make sure all your bars are the first things in your <body> -->
+<% content_for :javascript do %>
+  <script type="text/javascript" src="/javascripts/filter.js"></script>
+<% end %>
 
-<!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
 <div class="content">
-  <a href="/results" class="button-block button-main" data-transition="slide-in">Search</a>
+  <a class="button-block button-main search-button" data-transition="slide-in">Search</a>
 
   <ul class="filters list inset">
     <li role="service" data-type="HOS">
