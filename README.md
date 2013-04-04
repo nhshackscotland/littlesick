@@ -1,4 +1,4 @@
-littlesick
+LittleSick
 ==========
 
-littlesick
+Insert documentation here.

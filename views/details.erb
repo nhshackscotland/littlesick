@@ -1,21 +1,14 @@
-<!-- Make sure all your bars are the first things in your <body> -->
 <header class="bar-title">
-  <a class="button-prev" href="/results" data-transition="slide-out">
-    Back
-  </a>
-
+  <a class="button-prev" href="/results" data-transition="slide-out">Back</a>
   <h1 class="title"><%= @location_name %></h1>
 </header>
 
-<!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
 <div class="content">
   <a href="tel:<%= @phone %>" class="button-block button-positive">Call <%= @phone %></a>
 
   <ul class="list inset">
     <li class="list-divider">Opening Times</li>
-    <li>
-      24-7
-    </li>
+    <li>24-7</li>
   </ul>
 
   <ul class="list inset">
@@ -31,8 +24,6 @@
 
   <ul class="list inset">
     <li class="list-divider">Address</li>
-    <li>
-      <%= @address %>
-    </li>
+    <li> <%= @address %> </li>
   </ul>
 </div>
