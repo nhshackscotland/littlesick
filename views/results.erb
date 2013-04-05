@@ -1,7 +1,7 @@
 <header class="bar-title">
   <a href="/" class="button-prev" data-ignore="push">Change Filter</a>
   <ul class="segmented-controller">
-    <li class="active"><a href="/results">List</a></li>
+    <li class="active"><a>List</a></li>
     <li><a href="/map">Map</a></li>
   </ul>
 </header>
@@ -9,10 +9,10 @@
 <div class="content">
   <ul class="list inset">
     <% @results.each do |result| %>
-      <li role="service" data-category="<%= result[:category] %>">
-        <a href="/details/<%= result[:_id] %>" data-transition="slide-in">
-          <span class="distance"><%= result[:geo_near_distance] %>mi</span>
-          <strong><%= result[:location_name] %></strong>
+      <li role="service" data-category="<%= result["category"] %>">
+        <a href="/details/<%= result["_id"] %>" data-transition="slide-in">
+          <span class="distance"><%= result["distance"] %>mi</span>
+          <strong><%= result["location_name"] %></strong>
           <span class="chevron"></span>
         </a>
       </li>

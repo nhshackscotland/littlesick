@@ -6,35 +6,13 @@
   <a class="button-block button-main search-button" data-transition="slide-in">Search</a>
 
   <ul class="filters list inset">
-    <li role="service" data-category="HOS">
-      <span class="label"> Hospital </span>
-      <div class="toggle active">
-        <div class="toggle-handle"></div>
-      </div>
-    </li>
-    <li role="service" data-category="AAE">
-      <span class="label"> A&amp;E </span>
-      <div class="toggle active">
-        <div class="toggle-handle"></div>
-      </div>
-    </li>
-    <li role="service" data-category="MIU">
-      <span class="label"> MIU </span>
-      <div class="toggle active">
-        <div class="toggle-handle"></div>
-      </div>
-    </li>
-    <li role="service" data-category="GPP">
-      <span class="label"> GP </span>
-      <div class="toggle active">
-        <div class="toggle-handle"></div>
-      </div>
-    </li>
-    <li role="service" data-category="PHA">
-      <span class="label"> Pharmacy </span>
-      <div class="toggle active">
-        <div class="toggle-handle"></div>
-      </div>
-    </li>
+    <% @categories.each do |category| %>
+      <li role="service" data-category="<%= category[:key] %>">
+        <span class="label"><%= category[:name] %></span>
+        <div class="toggle <%= category[:class] %>">
+          <div class="toggle-handle"></div>
+        </div>
+      </li>
+    <% end %>
   </ul>
 </div>

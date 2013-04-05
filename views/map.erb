@@ -2,11 +2,12 @@
   <a href="/" class="button-prev" data-ignore="push">Change Filter</a>
   <ul class="segmented-controller">
     <li><a href="/results">List</a></li>
-    <li class="active"><a href="/map">Map</a></li>
+    <li class="active"><a>Map</a></li>
   </ul>
 </header>
 
 <div class="content">
-  <img src="images/map_small.png" />
+  <% lat, lng = session[:ll].split(',') %>
+  <div id="map" data-latitude="<%= lat %>" data-longitude="<%= lng %>"></div>
 </div>
 

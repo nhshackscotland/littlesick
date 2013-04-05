@@ -65,3 +65,9 @@
 .list li[data-category="PHA"] {
   background-color: #025B65; /* blue */
 }
+
+#map {
+  height: 100%;
+  width: 100%;
+}
+
