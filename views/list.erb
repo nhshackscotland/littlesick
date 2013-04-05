@@ -8,11 +8,11 @@
 
 <div class="content">
   <ul class="list inset">
-    <% @results.each do |result| %>
-      <li role="service" data-category="<%= result["category"] %>">
-        <a href="/details/<%= result["_id"] %>" data-transition="slide-in">
-          <span class="distance"><%= result["distance"] %>mi</span>
-          <strong><%= result["location_name"] %></strong>
+    <% @services.each do |service| %>
+      <li role="service" data-category="<%= service["category"] %>">
+        <a href="/details/<%= service["_id"] %>" data-transition="slide-in">
+          <span class="distance"><%= service["distance"] %>mi</span>
+          <strong><%= service["location_name"] %></strong>
           <span class="chevron"></span>
         </a>
       </li>

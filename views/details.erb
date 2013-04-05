@@ -1,10 +1,10 @@
 <header class="bar-title">
-  <a class="button-prev" href="/results" data-transition="slide-out">Back</a>
-  <h1 class="title"><%= @location_name %></h1>
+  <a class="button-prev" href="/list" data-transition="slide-out">Back</a>
+  <h1 class="title"><%= @service['location_name'] %></h1>
 </header>
 
 <div class="content">
-  <a href="tel:<%= @phone %>" class="button-block button-positive">Call <%= @phone %></a>
+  <a href="tel:<%= @service['phone'] %>" class="button-block button-positive">Call <%= @service['phone'] %></a>
 
   <ul class="list inset">
     <li class="list-divider">Opening Times</li>
@@ -14,7 +14,7 @@
   <ul class="list inset">
     <li class="list-divider">Qualifying Comments</li>
     <li>
-      <% if @category == 'MIU' %>
+      <% if @service['category'] == 'MIU' %>
         <p>Rule out syncope, ECG abnormality or anti-coagulants.</p>
         <br />
         <p>Phone ahead for geriatric consort services (age 75+).</p>
@@ -24,6 +24,6 @@
 
   <ul class="list inset">
     <li class="list-divider">Address</li>
-    <li> <%= @address %> </li>
+    <li> <%= @service['address'] %> </li>
   </ul>
 </div>

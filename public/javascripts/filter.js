@@ -12,7 +12,7 @@ var generateUrl = function (position) {
   lat  = position.coords.latitude;
   long = position.coords.longitude;
 
-  url  = '/results'
+  url  = '/list'
   url += '?ll=' + lat + ',' + long;
   url += '&categories=' + getCategories();
 
@@ -29,10 +29,11 @@ var getCategories = function () {
   return cats.join(',');
 };
 
-var setup = function () {
-  $('.search-button').on('click', function (e) {
-    getLocation(foundLocation, noLocation);
-  });
-};
+$(function () {
+  if ($('.search-button').length) {
+    $('.search-button').on('click', function (e) {
+      getLocation(foundLocation, noLocation);
+    });
+  }
+});
 
-$(setup);

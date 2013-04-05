@@ -1,100 +1,102 @@
 require 'sinatra'
-require 'sinatra/content_for'
 require 'json'
 
 class LittleSick < Sinatra::Base
-  helpers Sinatra::ContentFor
+  SERVICE_LIMIT = 5
+  EARTH_RADIUS  = 3960.0 # for distance calcs
 
   enable :sessions
 
+  before do
+    session[:ll] = params[:ll] if params.has_key?('ll')
+    session[:categories] = params[:categories] if params.has_key?('categories')
+  end
+
   get '/' do
-    @categories = [
-      { key: "HOS", name: "Hospital", class: category_class('HOS') },
-      { key: "AAE", name: "A&E", class: category_class('AAE') },
-      { key: "MIU", name: "MIU", class: category_class('MIU') },
-      { key: "GPP", name: "GP", class: category_class('GPP') },
-      { key: "PHA", name: "Pharmacy", class: category_class('PHA') }
-    ]
-    erb :filter, layout: :application
+    @categories = categories
+    erb :filter
+  end
+
+  get '/list' do
+    @services = all_services_with_distance
+    erb :list
   end
 
   get '/map' do
-    @services = results.to_json
-    erb :map, layout: :application
-  end
-
-  get '/results' do
-    session[:ll] = params[:ll] if params.has_key?('ll')
-    session[:categories] = params[:categories] if params.has_key?('categories')
-
-    @results = results
-    position = session[:ll].split(',').map(&:to_f)
-    @results.each do |result|
-      result["distance"] = distance(position, result["location"])
-    end
-    erb :results, layout: :application
+    erb :map
   end
 
   get '/details/:id' do
-    service = results.find{|service| service["_id"] == params[:id]}
-    @location_name = service["location_name"]
-    @phone = service["phone"]
-    @address = service["address"]
-    @category = service["category"]
-
-    erb :details, layout: :application
+    @service = find_service(params[:id])
+    erb :details
   end
 
   get "/data.json" do
     content_type :json
-    results.to_json
+    all_services.to_json
   end
 
   private
 
-  def category_class(key)
-    if session[:categories]
-      if session[:categories].split(',').include?(key)
-        'active'
-      else
-        ''
-      end
-    else
-      'active'
+  # change to index API call
+  def get_services
+    File.read('data/services.json')
+  end
+
+  # change to show API call
+  def get_service(id)
+    all_services.find{|service| service["_id"] == id}.to_json
+  end
+
+  def all_services
+    JSON.parse(get_services)
+      .sort{|a,b| a[:geo_near_distance] <=> b[:geo_near_distance] }
+      .take(SERVICE_LIMIT)
+  end
+
+  def all_services_with_distance
+    position = session[:ll].split(',').map(&:to_f)
+    all_services.each do |service|
+      service["distance"] = distance(position, service["location"])
     end
   end
 
-  def results
-    JSON.parse(File.read('data/services.json'))
-      .sort{|a,b| a[:geo_near_distance] <=> b[:geo_near_distance] }
-      .take(5)
+  def find_service(id)
+    JSON.parse(get_service(id))
   end
 
-  RHO = 3960.0 # earth diameter in miles
+  # helper schmelpers
+  def categories
+    [
+      { key: "HOS",  name: "Hospital",  class: category_class('HOS') },
+      { key: "AAE",  name: "A&E",       class: category_class('AAE') },
+      { key: "MIU",  name: "MIU",       class: category_class('MIU') },
+      { key: "GPP",  name: "GP",        class: category_class('GPP') },
+      { key: "PHA",  name: "Pharmacy",  class: category_class('PHA') }
+    ]
+  end
+
+  def category_class(key)
+    return nil if session[:categories] && !session[:categories].match(/#{key}/)
+    'active'
+  end
 
   def distance(coords_1, coords_2)
     lat_1, lon_1 = coords_1
-    lon_2, lat_2 = coords_2 # stupid mongoDb returns backwards coords
+    lon_2, lat_2 = coords_2 # mongoDb returns backwards coords
 
-    # convert latitude and longitude to spherical coordinates in radians
+    # fancy calculations courtesy of http://www.johndcook.com/lat_long_distance.html
 
-    # phi = 90 - latitude
     phi_1 = (90.0 - lat_1) * Math::PI / 180.0
     phi_2 = (90.0 - lat_2) * Math::PI / 180.0
 
-    # theta = longitude
     theta_1 = lon_1 * Math::PI / 180.0
     theta_2 = lon_2 * Math::PI / 180.0
 
-    # compute spherical distance from spherical coordinates
-
-    # arc length = \arccos(\sin\phi\sin\phi'\cos(\theta-\theta') + \cos\phi\cos\phi')
-    # distance = rho times arc length
-    distance = RHO * Math.acos(
+    distance = EARTH_RADIUS * Math.acos(
       Math.sin(phi_1) * Math.sin(phi_2) * Math.cos(theta_1 - theta_2) + Math.cos(phi_1) * Math.cos(phi_2)
     )
 
-    # get rid of superfluous precision
     distance.round(2)
   end
 end
