@@ -20,7 +20,7 @@
 .distance {
   float: left;
   opacity: 0.6;
-  width: 20%;
+  width: 60px;
 }
 
 .service-name {
@@ -35,6 +35,7 @@
 }
 
 .filters.list li[role="service"] {
+  cursor: pointer;
   font-size: 120%;
   font-weight: bold;
   padding-top: 15px;
@@ -42,6 +43,11 @@
 }
 
 .list li[role="service"] {
+  color: white;
+}
+
+.list li[role="service"].unselected {
+  background-color: #666;
   color: white;
 }
 
@@ -71,3 +77,15 @@
   width: 100%;
 }
 
+.state {
+  float: right;
+  margin-right: -40px;
+}
+
+.selected .state.on, .unselected .state.off {
+  display: block;
+}
+
+.selected .state.off, .unselected .state.on {
+  display: none;
+}

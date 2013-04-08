@@ -77,8 +77,11 @@ class LittleSick < Sinatra::Base
   end
 
   def category_class(key)
-    return nil if session[:categories] && !session[:categories].match(/#{key}/)
-    'active'
+    if session[:categories] && !session[:categories].match(/#{key}/)
+      'unselected'
+    else
+      'selected'
+    end
   end
 
   def distance(coords_1, coords_2)

@@ -26,11 +26,11 @@ describe("Filter", function () {
   });
 
   describe("getCategories", function() {
-    it("returns the active categories", function () {
+    it("returns the selected categories", function () {
       var filterHtml = ''
-      filterHtml += '<li data-category="A"><div class="toggle active"></div></li>';
-      filterHtml += '<li data-category="B"><div class="toggle"></div></li>';
-      filterHtml += '<li data-category="C"><div class="toggle active"></div></li>';
+      filterHtml += '<li data-category="A" class="selected"></li>';
+      filterHtml += '<li data-category="B" class="unselected"></li>';
+      filterHtml += '<li data-category="C" class="selected"></li>';
 
       $('body').append(filterHtml);
 

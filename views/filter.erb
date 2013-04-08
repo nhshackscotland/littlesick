@@ -1,13 +1,12 @@
 <div class="content">
-  <a class="button-block button-main search-button" data-transition="slide-in">Search</a>
+  <a class="button-block button-main search-button">Search</a>
 
   <ul class="filters list inset">
     <% @categories.each do |category| %>
-      <li role="service" data-category="<%= category[:key] %>">
+      <li role="service" data-category="<%= category[:key] %>" class="<%= category[:class] %>">
         <span class="label"><%= category[:name] %></span>
-        <div class="toggle <%= category[:class] %>">
-          <div class="toggle-handle"></div>
-        </div>
+        <span class="state on">ON</span>
+        <span class="state off">OFF</span>
       </li>
     <% end %>
   </ul>

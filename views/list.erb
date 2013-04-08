@@ -1,20 +1,18 @@
 <header class="bar-title">
-  <a href="/" class="button-prev" data-ignore="push">Change Filter</a>
+  <a data-href="/" class="button-prev">Change Filter</a>
   <ul class="segmented-controller">
     <li class="active"><a>List</a></li>
-    <li><a href="/map">Map</a></li>
+    <li data-href="/map"><a>Map</a></li>
   </ul>
 </header>
 
 <div class="content">
   <ul class="list inset">
     <% @services.each do |service| %>
-      <li role="service" data-category="<%= service["category"] %>">
-        <a href="/details/<%= service["_id"] %>" data-transition="slide-in">
-          <span class="distance"><%= service["distance"] %>mi</span>
-          <strong><%= service["location_name"] %></strong>
-          <span class="chevron"></span>
-        </a>
+      <li data-href="/details/<%= service["_id"] %>" role="service" data-category="<%= service["category"] %>">
+        <span class="distance"><%= service["distance"] %>mi</span>
+        <strong><%= service["location_name"] %></strong>
+        <span class="chevron"></span>
       </li>
     <% end %>
   </ul>

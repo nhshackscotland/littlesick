@@ -24,7 +24,7 @@ var noLocation = function () {
 };
 
 var getCategories = function () {
-  var cats = $('.toggle.active').closest('li');
+  var cats = $('li.selected');
   cats = $.map(cats, function(n,i) { return $(n).data('category'); });
   return cats.join(',');
 };
@@ -33,6 +33,14 @@ $(function () {
   if ($('.search-button').length) {
     $('.search-button').on('click', function (e) {
       getLocation(foundLocation, noLocation);
+    });
+
+    $('.filters li').on('click', function (e) {
+      if ( $(this).hasClass('selected') ) {
+        $(this).addClass('unselected').removeClass('selected');
+      } else {
+        $(this).removeClass('unselected').addClass('selected');
+      }
     });
   }
 });

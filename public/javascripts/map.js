@@ -23,7 +23,7 @@ var loadMap = function () {
     var long = service.longitude;
 
     var infowindow = new google.maps.InfoWindow({
-      content: '<div id="content"><a href="/details/' + id + '">' + name + '</a></div>'
+      content: '<div id="content"><a href="#" data-href="/details/' + id + '">' + name + '</a></div>'
     });
 
     var marker = new google.maps.Marker({
@@ -40,6 +40,7 @@ var loadMap = function () {
   $.getJSON('/data.json', function(data) { $.each(data, plotService) });
 };
 
-window.addEventListener('push', function() {
+$(function() {
   if($('#map').length) { loadMap() }
 });
+
