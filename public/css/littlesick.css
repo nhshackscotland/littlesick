@@ -60,8 +60,7 @@
 }
 
 .list li[data-category="MIU"] {
-  background-color: #FCCF02; /* yellow */
-  color: black;
+  background-color: #DCC828; /* yellow */
 }
 
 .list li[data-category="GPP"], .list li[data-category="GPB"] {
