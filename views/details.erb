@@ -8,23 +8,17 @@
 
   <ul class="list inset">
     <li class="list-divider">Opening Times</li>
-    <li>24-7</li>
+    <li><%= simple_format(@service['opening_times']) %></li>
   </ul>
 
   <ul class="list inset">
     <li class="list-divider">Qualifying Comments</li>
-    <li>
-      <% if @service['category'] == 'MIU' %>
-        <p>Rule out syncope, ECG abnormality or anti-coagulants.</p>
-        <br />
-        <p>Phone ahead for geriatric consort services (age 75+).</p>
-      <% end %>
-    </li>
+    <li><%= simple_format(@service['qualifying_comments']) %></li>
   </ul>
 
   <ul class="list inset">
     <li class="list-divider">Address</li>
-    <li> <%= @service['address'] %> </li>
+    <li><%= simple_format(@service['address']) %></li>
   </ul>
 </div>
 

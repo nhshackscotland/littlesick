@@ -12,6 +12,20 @@ class LittleSick < Sinatra::Base
     session[:categories] = params[:categories] if params.has_key?('categories')
   end
 
+  helpers do
+    def simple_format(text, html_options={}, options={})
+      text = '' if text.nil?
+      text = text.dup
+      start_tag = tag('p', html_options, true)
+      text = text.to_str
+      text.gsub!(/\r\n?/, "\n")                    # \r\n and \r -> \n
+      text.gsub!(/\n\n+/, "</p>\n\n#{start_tag}")  # 2+ newline  -> paragraph
+      text.gsub!(/([^\n]\n)(?=[^\n])/, '\1<br />') # 1 newline   -> br
+      text.insert 0, start_tag
+      text.concat("</p>")
+    end
+  end
+
   get '/' do
     @categories = categories
     erb :filter
@@ -78,6 +92,34 @@ class LittleSick < Sinatra::Base
       'unselected'
     else
       'selected'
+    end
+  end
+
+  def tag(name, options = nil, open = false, escape = true)
+    "<#{name}#{tag_options(options, escape) if options}#{open ? ">" : " />"}"
+  end
+
+  def tag_options(options, escape = true)
+    unless options.empty?
+      attrs = []
+      options.each_pair do |key, value|
+        if key.to_s == 'data' && value.is_a?(Hash)
+          value.each do |k, v|
+            if !v.is_a?(String) && !v.is_a?(Symbol)
+              v = v.to_json
+            end
+            v = ERB::Util.html_escape(v) if escape
+            attrs << %(data-#{k.to_s.dasherize}="#{v}")
+          end
+        elsif BOOLEAN_ATTRIBUTES.include?(key)
+          attrs << %(#{key}="#{key}") if value
+        elsif !value.nil?
+          final_value = value.is_a?(Array) ? value.join(" ") : value
+          final_value = ERB::Util.html_escape(final_value) if escape
+          attrs << %(#{key}="#{final_value}")
+        end
+      end
+      " #{attrs.sort * ' '}" unless attrs.empty?
     end
   end
 end
