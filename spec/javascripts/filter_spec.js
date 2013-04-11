@@ -12,7 +12,7 @@ describe("Filter", function () {
 
   describe("generateUrl", function() {
     it("provides the current lat and long coordinates", function () {
-      result = generateUrl({coords: { latitude: 1, longitude: 2 } });
+      result = generateUrl({coords: { longitude: 1, latitude: 2 } });
       expect(result).toContain('ll=1,2');
     });
   });

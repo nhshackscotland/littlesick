@@ -1,7 +1,7 @@
 var loadMap = function () {
   var currentPosition = new google.maps.LatLng(
-    $('#map').data('latitude'),
-    $('#map').data('longitude')
+    $('#map').data('longitude'),
+    $('#map').data('latitude')
   );
 
   var map = new google.maps.Map($("#map")[0], {

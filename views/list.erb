@@ -10,7 +10,7 @@
   <ul class="list inset">
     <% @services.each do |service| %>
       <li data-href="/details/<%= service["_id"] %>" role="service" data-category="<%= service["category"] %>">
-        <span class="distance"><%= service["distance"] %>mi</span>
+        <span class="distance"><%= service["geo_near_distance"] %>mi</span>
         <strong><%= service["location_name"] %></strong>
         <span class="chevron"></span>
       </li>

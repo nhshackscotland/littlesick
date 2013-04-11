@@ -7,13 +7,13 @@ var foundLocation = function (position) {
 };
 
 var generateUrl = function (position) {
-  var lat, long, url;
+  var long, lat, url;
 
-  lat  = position.coords.latitude;
   long = position.coords.longitude;
+  lat  = position.coords.latitude;
 
   url  = '/list'
-  url += '?ll=' + lat + ',' + long;
+  url += '?ll=' + long + ',' + lat;
   url += '&categories=' + getCategories();
 
   return url;
