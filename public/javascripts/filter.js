@@ -1,5 +1,5 @@
 var getLocation = function (found, notFound) {
-  navigator.geolocation.getCurrentPosition(found, notFound);
+  navigator.geolocation.getCurrentPosition(found, notFound, { timeout: 3000 });
 };
 
 var foundLocation = function (position) {
@@ -20,6 +20,7 @@ var generateUrl = function (position) {
 };
 
 var noLocation = function () {
+  $('.spinner').addClass('hide');
   alert('Could not find location');
 };
 
@@ -32,6 +33,7 @@ var getCategories = function () {
 $(function () {
   if ($('.search-button').length) {
     $('.search-button').on('click', function (e) {
+      $('.spinner').removeClass('hide');
       getLocation(foundLocation, noLocation);
     });
 
@@ -44,4 +46,3 @@ $(function () {
     });
   }
 });
-
