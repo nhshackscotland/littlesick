@@ -6,7 +6,7 @@ describe("Filter", function () {
       found = function() { };
       notFound = function() { };
       getLocation(found, notFound);
-      expect(navigator.geolocation.getCurrentPosition).toHaveBeenCalledWith(found, notFound);
+      expect(navigator.geolocation.getCurrentPosition).toHaveBeenCalledWith(found, notFound, {timeout: 3000});
     });
   });
 
@@ -27,7 +27,7 @@ describe("Filter", function () {
 
   describe("getCategories", function() {
     it("returns the selected categories", function () {
-      var filterHtml = ''
+      var filterHtml = '';
       filterHtml += '<li data-category="A" class="selected"></li>';
       filterHtml += '<li data-category="B" class="unselected"></li>';
       filterHtml += '<li data-category="C" class="selected"></li>';

@@ -12,7 +12,7 @@ var generateUrl = function (position) {
   long = position.coords.longitude;
   lat  = position.coords.latitude;
 
-  url  = '/list'
+  url  = '/list';
   url += '?ll=' + long + ',' + lat;
   url += '&categories=' + getCategories();
 

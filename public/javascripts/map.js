@@ -5,7 +5,7 @@ var loadMap = function () {
   );
 
   var map = new google.maps.Map($("#map")[0], {
-    zoom      : 8,
+    zoom      : 12,
     center    : currentPosition,
     mapTypeId : google.maps.MapTypeId.ROADMAP
   });
@@ -37,10 +37,10 @@ var loadMap = function () {
     });
   };
 
-  $.getJSON('/data.json', function(data) { $.each(data, plotService) });
+  $.getJSON('/data.json', function(data) { $.each(data, plotService); });
 };
 
 $(function() {
-  if($('#map').length) { loadMap() }
+  if($('#map').length) { loadMap(); }
 });
 

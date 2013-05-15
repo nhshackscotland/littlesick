@@ -3,7 +3,7 @@ require 'json'
 require 'rest_client'
 
 class LittleSick < Sinatra::Base
-  SERVICE_LIMIT = 5
+  SERVICE_LIMIT = 10
 
   enable :sessions
 
